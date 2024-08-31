@@ -116,8 +116,8 @@ int main(void)
     cout << "DECIMAL TO OCTAL" << endl;
     dec_to_octal(num);
 
-    // cout << "DECIMAL TO HEX" << endl;
-    // dec_to_hex(num);
+    cout << "DECIMAL TO HEX" << endl;
+    dec_to_hex(num);
 
     return 0;
 }

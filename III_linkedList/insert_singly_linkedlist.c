@@ -4,17 +4,14 @@ File name: insert_singly_linkedlist.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 1. Insert new node of given value at given position in the Singly Linked List.
 2. Insert new node at last position of the singly Linked List.
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
-
 
 struct Node
 {
@@ -25,19 +22,18 @@ struct Node
 typedef struct Node Node;
 Node *head = NULL; // global head pointer
 
-
 /*
 API to display contents of the linkedlist using iterative approach.
 */
 void display(Node *ptr)
 {
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         printf("LINKED LIST is EMPTY\n");
         return;
     }
 
-    while(ptr != NULL)
+    while (ptr != NULL)
     {
         printf("%d\t", ptr->data);
         ptr = ptr->next;
@@ -45,14 +41,13 @@ void display(Node *ptr)
     printf("\n");
 }
 
-
 /*
 API to count number of nodes in the linked list.
 */
 int count(Node *ptr)
 {
     int nodeCount = 0;
-    while(ptr != NULL)
+    while (ptr != NULL)
     {
         nodeCount++;
         ptr = ptr->next;
@@ -60,7 +55,6 @@ int count(Node *ptr)
 
     return nodeCount;
 }
-
 
 /*
 API to insert node at particular position.
@@ -73,14 +67,14 @@ void insert(Node *ptr, int pos, int value)
     newNode->next = NULL;
 
     // check for valid position
-    if(pos < 0 || pos > count(ptr))
+    if (pos < 0 || pos > count(ptr))
     {
         printf("Enter valid position. Either %d or less than %d\n", 0, count(ptr));
         return;
     }
 
     // inserting at the start of the list
-    if(pos == 0)
+    if (pos == 0)
     {
         newNode->next = head;
         head = newNode;
@@ -88,7 +82,7 @@ void insert(Node *ptr, int pos, int value)
     else
     {
         // make the ptr to point previous node of mentioned position.
-        for(int i = 0; i < pos - 1; i++)
+        for (int i = 0; i < pos - 1; i++)
             ptr = ptr->next;
 
         // first make the link between new node to next node.
@@ -97,7 +91,6 @@ void insert(Node *ptr, int pos, int value)
         ptr->next = newNode;
     }
 }
-
 
 /*
 API to insert node always at the last position.
@@ -112,15 +105,15 @@ void insertAtLast(Node *ptr, int value)
     newNode->next = NULL;
 
     // if list is empty i.e. head or ptr = NULL
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         head = newNode;
         last = newNode;
     }
     else
     {
-        last = ptr; // start last pointer from head
-        while(last->next != NULL) // traverse the list until last pointer reach to last node of list.
+        last = ptr;                // start last pointer from head
+        while (last->next != NULL) // traverse the list until last pointer reach to last node of list.
         {
             last = last->next;
         }
@@ -130,9 +123,7 @@ void insertAtLast(Node *ptr, int value)
         last->next = newNode;
         last = newNode;
     }
-
 }
-
 
 /* Driver Code */
 int main(void)

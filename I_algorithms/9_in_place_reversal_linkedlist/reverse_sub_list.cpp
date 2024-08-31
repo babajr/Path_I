@@ -4,7 +4,6 @@ File name: reverse_sub_list.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Given the head of a LinkedList and two positions ‘p’ and ‘q’,
 reverse the LinkedList from position ‘p’ to ‘q’.
@@ -13,10 +12,8 @@ Input: head ->  1  ->  2  ->  3  ->  4   ->  5   ->  6  ->  NULL, p = 2, q = 4
 Output: head ->  1  ->  4  ->  3  ->  2   ->  5   ->  6  ->  NULL
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
-
 
 struct Node
 {
@@ -27,19 +24,18 @@ struct Node
 typedef struct Node Node;
 Node *head = NULL; // global head pointer
 
-
 /*
 API to display contents of the linkedlist using iterative approach.
 */
 void display(Node *ptr)
 {
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         printf("LINKED LIST is EMPTY\n");
         return;
     }
 
-    while(ptr != NULL)
+    while (ptr != NULL)
     {
         printf("%d\t", ptr->data);
         ptr = ptr->next;
@@ -47,7 +43,6 @@ void display(Node *ptr)
 
     printf("\n");
 }
-
 
 /*
 API to insert node always at the last position.
@@ -62,15 +57,15 @@ void insertAtLast(Node *ptr, int value)
     newNode->next = NULL;
 
     // if list is empty i.e. head or ptr = NULL
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         head = newNode;
         last = newNode;
     }
     else
     {
-        last = ptr; // start last pointer from head
-        while(last->next != NULL) // traverse the list until last pointer reach to last node of list.
+        last = ptr;                // start last pointer from head
+        while (last->next != NULL) // traverse the list until last pointer reach to last node of list.
         {
             last = last->next;
         }
@@ -80,9 +75,7 @@ void insertAtLast(Node *ptr, int value)
         last->next = newNode;
         last = newNode;
     }
-
 }
-
 
 /*
 In Place Reversal.
@@ -130,7 +123,7 @@ head - 1 - 2 - 3 - 4 - 5 - 6 - NULL, p = 2, q = 4
 Node *reverse_sub_list(Node *head, int p, int q)
 {
     // in case p and q are equal means size of sublist is 1 i.e. reversed sublist = original sublist.
-    if(p == q)
+    if (p == q)
         return head;
 
     // go to node p after skipping p-1 nodes.
@@ -138,7 +131,7 @@ Node *reverse_sub_list(Node *head, int p, int q)
     // prev will point to p-1 node.
     Node *curr = head;
     Node *prev = NULL;
-    for(int i = 0; curr != NULL && i < p - 1; i++)
+    for (int i = 0; curr != NULL && i < p - 1; i++)
     {
         prev = curr;
         curr = curr->next;
@@ -152,10 +145,10 @@ Node *reverse_sub_list(Node *head, int p, int q)
 
     Node *last_node_sub_list = curr; // after reversing the sub list
                                      // curr will be the last node of sub list.
-    Node *next = NULL; // use to temporarily store the next node while reversing the sublist.
+    Node *next = NULL;               // use to temporarily store the next node while reversing the sublist.
 
     // reverse the sublist between p and q.
-    for(int i = 0; curr != NULL && i < (q-p+1); i++)
+    for (int i = 0; curr != NULL && i < (q - p + 1); i++)
     {
         next = curr->next;
         curr->next = prev;
@@ -165,7 +158,7 @@ Node *reverse_sub_list(Node *head, int p, int q)
 
     // connect reversed sublist with the first part.
     // two case: p > 1 and p = 1
-    if(last_node_first_part != NULL) // p > 1
+    if (last_node_first_part != NULL) // p > 1
         last_node_first_part->next = prev;
     else // p = 1, change the first node i.e. head of linked list.
         head = prev;
@@ -176,7 +169,6 @@ Node *reverse_sub_list(Node *head, int p, int q)
     // return the new head.
     return head;
 }
-
 
 int main(void)
 {

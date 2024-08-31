@@ -4,7 +4,6 @@ File name: check_linkedlist_palindrome.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Given the head of a Singly LinkedList, write a method to check if the LinkedList is
 a palindrome or not.
@@ -16,10 +15,10 @@ Input: 2 -> 4 -> 6 -> 4 -> 2 -> 2 -> null
 Output: false
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+#include <iostream>
+#include <stack>
 using namespace std;
-
-
 
 struct Node
 {
@@ -28,22 +27,21 @@ struct Node
 };
 
 typedef struct Node Node;
-Node *head = NULL; // global head pointer
+Node *head = NULL;  // global head pointer
 Node *head1 = NULL; // global head pointer for second list.
-
 
 /*
 API to display contents of the linkedlist using iterative approach.
 */
 void display(Node *ptr)
 {
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         printf("LINKED LIST is EMPTY\n");
         return;
     }
 
-    while(ptr != NULL)
+    while (ptr != NULL)
     {
         printf("%d\t", ptr->data);
         ptr = ptr->next;
@@ -51,7 +49,6 @@ void display(Node *ptr)
 
     printf("\n");
 }
-
 
 /*
 API to insert node always at the last position.
@@ -66,15 +63,15 @@ void insertAtLast(Node *ptr, int value)
     newNode->next = NULL;
 
     // if list is empty i.e. head or ptr = NULL
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         head = newNode;
         last = newNode;
     }
     else
     {
-        last = ptr; // start last pointer from head
-        while(last->next != NULL) // traverse the list until last pointer reach to last node of list.
+        last = ptr;                // start last pointer from head
+        while (last->next != NULL) // traverse the list until last pointer reach to last node of list.
         {
             last = last->next;
         }
@@ -84,9 +81,7 @@ void insertAtLast(Node *ptr, int value)
         last->next = newNode;
         last = newNode;
     }
-
 }
-
 
 /*
 Helper API to reverse the linked list.
@@ -95,17 +90,16 @@ Node *reverse(Node *curr)
 {
     // to reverse the link from the curr to previous node.
     Node *prev = NULL;
-    while(curr != NULL)
+    while (curr != NULL)
     {
         Node *next = curr->next; // to point to the next node after curr in order to traverse forward even after reversing the link.
-        curr->next = prev; // reverse the link.
-        prev = curr; // move prev to next node.
-        curr = next; // move curr to next node.
+        curr->next = prev;       // reverse the link.
+        prev = curr;             // move prev to next node.
+        curr = next;             // move curr to next node.
     }
 
     return prev;
 }
-
 
 /*
 API to check if given linked list is palindrome or not.
@@ -122,14 +116,14 @@ Algo:
 bool is_palindrome_linkedlist(Node *ptr)
 {
     // Empty list and list with one node will be considered as palindrome.
-    if(ptr == NULL || ptr->next == NULL)
+    if (ptr == NULL || ptr->next == NULL)
         return true;
 
     // find the middle of the linked list.
     Node *slow = ptr;
     Node *fast = ptr;
 
-    while(fast != NULL && fast->next != NULL)
+    while (fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
@@ -142,9 +136,9 @@ bool is_palindrome_linkedlist(Node *ptr)
     Node *copy_head_second = head_second;
 
     // compare the two halfs. If equal list will be palindrome.
-    while(ptr != NULL && head_second != NULL)
+    while (ptr != NULL && head_second != NULL)
     {
-        if(ptr->data != head_second->data)
+        if (ptr->data != head_second->data)
             break; // not a palindrome.
         ptr = ptr->next;
         head_second = head_second->next;
@@ -153,12 +147,11 @@ bool is_palindrome_linkedlist(Node *ptr)
     // revert the second half.
     reverse(copy_head_second);
 
-    if(ptr == NULL || head_second == NULL)
+    if (ptr == NULL || head_second == NULL)
         return true;
     else
         return false;
 }
-
 
 /*
 Brute Force: Using Stack. TC: O(n), SC: O(n)
@@ -174,11 +167,11 @@ Algo:
 bool is_palindrome_linkedlist_bf(Node *ptr)
 {
     // create a stack of int values.
-    stack <int> st;
+    stack<int> st;
     Node *temp = ptr;
 
     // push all elements of list to the stack
-    while(ptr != NULL)
+    while (ptr != NULL)
     {
         st.push(ptr->data);
         ptr = ptr->next;
@@ -187,9 +180,9 @@ bool is_palindrome_linkedlist_bf(Node *ptr)
     // traverse the list and check one by one
     // if element popped from stack is equal to current
     // element in the list.
-    while(temp != NULL)
+    while (temp != NULL)
     {
-        if(temp->data != st.top())
+        if (temp->data != st.top())
             return false;
 
         st.pop();
@@ -198,7 +191,6 @@ bool is_palindrome_linkedlist_bf(Node *ptr)
 
     return true;
 }
-
 
 int main(void)
 {
@@ -212,7 +204,7 @@ int main(void)
 
     display(head);
 
-    printf("%d\n", is_palindrome_linkedlist(head)); // 1 ==> Palindrome
+    printf("%d\n", is_palindrome_linkedlist(head));    // 1 ==> Palindrome
     printf("%d\n", is_palindrome_linkedlist_bf(head)); // 1 ==> Palindrome
 
     return 0;

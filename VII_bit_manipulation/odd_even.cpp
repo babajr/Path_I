@@ -15,7 +15,7 @@ using namespace std;
 
 
 /*
-API to find the given numis odd or even.
+API to find the given num is odd or even.
 
 Algo:
 --> use bitwise AND operator to check if LSB of num is 1 or 0.

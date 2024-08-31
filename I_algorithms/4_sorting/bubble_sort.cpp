@@ -4,11 +4,9 @@ File name: bubble_sort.cpp
 Author: babajr
 *****************************************************************************/
 
-
 #include <iostream>
 #include <cassert>
 using namespace std;
-
 
 /*
 Helper API to swap the numbers.
@@ -21,27 +19,33 @@ void swap(int *first, int *second)
 }
 
 /*
-API to sort the array using bubble sort algorithm.
+Bubble Sort: Worst case occurs when array is not sorted.
+TC (worst) = O(n2)
+TC (best) = O(n)
 
 Idea is to take the larger element to the end by repeatedly
 swapping the adjacent elements.
 */
 void bubble_sort_bf(int arr[], int size)
 {
-    for(int times = 0; times < size - 1; times++)
+    for (int times = 0; times < (size - 1); times++)
     {
-        for(int i = 0; i < (size - times - 1); i++)
+        for (int i = 0; i < (size - times - 1); i++)
         {
-            if(arr[i] > arr[i+1])
+            if (arr[i] > arr[i + 1])
             {
-                swap(arr[i], arr[i+1]);
+                // swap(arr[i], arr[i + 1]); // For C Code: swap(&arr[i], &arr[i+1]);
+                int temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
             }
         }
     }
 }
 
 /*
-API to sort the array using bubble sort algorithm.
+Buuble Sort (Best Case):
+The best case occurs if the given array is already sorted
 
 Idea is to take the larger element to the end by repeatedly
 swapping the adjacent elements.
@@ -50,42 +54,40 @@ If flag == 0, array is already sorted. Break out of the loop.
 */
 void bubble_sort(int arr[], int size)
 {
-    for(int times = 0; times < size - 1; times++)
+    for (int times = 0; times < (size - 1); times++)
     {
         int flag = 0; // to check if array is already sorted or not.
                       // 0 ==> array is already sorted
 
-        for(int i = 0; i < (size - times - 1); i++)
+        for (int i = 0; i < (size - times - 1); i++)
         {
-            if(arr[i] > arr[i+1])
+            if (arr[i] > arr[i + 1])
             {
-                swap(arr[i], arr[i+1]);
-                flag = 1; // array is not already sorted
+                swap(arr[i], arr[i + 1]); // For C Code: swap(&arr[i], &arr[i+1]);
+                flag = 1;                 // array is not already sorted
             }
         }
 
-        if(flag == 0) // array is already sorted, no need to
-            break;    // go for another iteration.
+        if (flag == 0) // array is already sorted, no need to
+            break;     // go for another iteration.
     }
 }
-
 
 /*
 Helper API to print the array.
 */
 void print_arr(int arr[], int size)
 {
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
         printf("%d ", arr[i]);
 
     printf("\n");
 }
 
-
 int main(void)
 {
-    // int arr[] = {1,4,5,2,3,6};
-    int arr[] = {1,2,3,4,5,7,6};
+    // int arr[] = {};
+    int arr[] = {5, 6, 1, 2, 3, 4};
     int size = sizeof(arr) / sizeof(arr[0]);
 
     printf("Original Array: \n");

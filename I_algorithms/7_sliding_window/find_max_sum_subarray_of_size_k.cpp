@@ -4,7 +4,6 @@ File name: find_max_sum_subarray_of_size_k.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Given an array of positive numbers and a positive number ‘k’,
 find the maximum sum of any contiguous subarray of size ‘k’.
@@ -14,9 +13,8 @@ Output: 9
 Explanation: Subarray with maximum sum is [5, 1, 3].
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 /*
 Brute Force. TC = O(n2)
@@ -29,12 +27,12 @@ int find_max_sum_subarr_bf(int arr[], int size, int k)
 {
     int max_sum = 0;
 
-    for(int i = 0; i < (size - k + 1); i++)
+    for (int i = 0; i < (size - k + 1); i++)
     {
         int window_sum = 0;
 
         // get the sum of window with size k.
-        for(int j = i; j < (i + k); j++)
+        for (int j = i; j < (i + k); j++)
         {
             window_sum += arr[j];
         }
@@ -45,7 +43,6 @@ int find_max_sum_subarr_bf(int arr[], int size, int k)
 
     return max_sum;
 }
-
 
 /*
 Efficient Approach: SLIDING WINDOW.
@@ -66,17 +63,17 @@ int find_max_sum_subarr(int arr[], int size, int k)
     int max_sum = 0;
     int window_sum = 0; // to hold each subarray sum.
 
-    for(int window_end = 0; window_end < size; window_end++)
+    for (int window_end = 0; window_end < size; window_end++)
     {
         // get the window sum by adding elements upto size k.
         window_sum += arr[window_end];
 
         // slide the window once current window sum is calculated.
-        if(window_end >= (k - 1))
+        if (window_end >= (k - 1))
         {
             // get the max_sum.
             max_sum = max(max_sum, window_sum);
-            //remove element going out
+            // remove element going out
             window_sum -= arr[window_start];
             // slide the window
             window_start++;
@@ -85,7 +82,6 @@ int find_max_sum_subarr(int arr[], int size, int k)
 
     return max_sum;
 }
-
 
 int main(int argc, char *argv[])
 {
@@ -96,7 +92,6 @@ int main(int argc, char *argv[])
 
     printf("Maximum Subarray Sum: %d\n", find_max_sum_subarr(arr, size, k));
     printf("Maximum Subarray Sum: %d\n", find_max_sum_subarr_bf(arr, size, k));
-
 
     return 0;
 }

@@ -60,8 +60,8 @@ int main(void)
     int val = 5, pos = 1; // pos is 1 based
     int size = sizeof(arr) / sizeof(arr[0]);
 
-    // int new_size = insert_in_array(arr, size, val, pos);
-    int new_size = insert_in_array_1(arr, size, capacity, val, pos);
+    int new_size = insert_in_array(arr, size, val, pos);
+    // int new_size = insert_in_array_1(arr, size, capacity, val, pos);
 
     for(int i = 0; i < new_size; i++)
         printf("%d ", arr[i]);

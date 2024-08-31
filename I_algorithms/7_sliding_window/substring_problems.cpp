@@ -138,11 +138,11 @@ int main(void)
     cout << "Length of the longest substring with at most k distinct charactrers: "
     << find_largest_substr_with_k_unique_char(str, 3) << endl;
 
-    cout << "Length of the longest substring with at most k distinct charactrers: "
-    << find_largest_substr_with_atmost_2_unique_char(str) << endl;
+    // cout << "Length of the longest substring with at most k distinct charactrers: "
+    // << find_largest_substr_with_atmost_2_unique_char(str) << endl;
 
-    cout << "Length of the longest substring with at most k distinct charactrers: "
-    << find_largest_substr_without_repeating_char(str) << endl;
+    // cout << "Length of the longest substring with at most k distinct charactrers: "
+    // << find_largest_substr_without_repeating_char(str) << endl;
 
     return 0;
 }

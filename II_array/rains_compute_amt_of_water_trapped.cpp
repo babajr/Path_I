@@ -4,7 +4,6 @@ File name: rains_compute_amt_of_water_trapped.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Given n non-negative integers representing an elevation map
 where the width of each bar is 1, compute how much water it is
@@ -17,10 +16,8 @@ Input: arr[]   = {3, 0, 2, 0, 4}
 Output: 7
 */
 
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 /*
 Brute Force. TC = O(n2)
@@ -33,16 +30,16 @@ int maxWater(int arr[], int size)
 {
     int total_water_trapped = 0;
 
-    for(int i = 1; i < size - 1; i++) // Ignore 0th and last element as, they can not trap water.
+    for (int i = 1; i < size - 1; i++) // Ignore 0th and last element as, they can not trap water.
     {
         // get maximum element on left of i.
         int leftMax = arr[i];
-        for(int j = 0; j < i; j++)
+        for (int j = 0; j < i; j++)
             leftMax = max(leftMax, arr[j]);
 
         // get maximum element on right of i.
         int rightMax = arr[i];
-        for(int j = i+1; j < size; j++)
+        for (int j = i + 1; j < size; j++)
             rightMax = max(rightMax, arr[j]);
 
         int water_trpped_i = min(leftMax, rightMax) - arr[i];
@@ -52,7 +49,6 @@ int maxWater(int arr[], int size)
 
     return total_water_trapped;
 }
-
 
 /*
 Approach 2: We will pre compute the highest bars on left and right of every bar.
@@ -72,19 +68,19 @@ int maxWaterOptimised(int arr[], int size)
 
     // Fill the left array.
     left[0] = arr[0];
-    for(int i = 1; i < size; i++)
+    for (int i = 1; i < size; i++)
     {
         left[i] = max(left[i - 1], arr[i]);
     }
 
     // Fill the right array.
     right[0] = arr[size - 1];
-    for(int i = size - 2; i >= 0; i--)
+    for (int i = size - 2; i >= 0; i--)
     {
-        right[i] = max(right[i+1], arr[i]);
+        right[i] = max(right[i + 1], arr[i]);
     }
 
-    for(int j = 1; j < size - 1; j++)
+    for (int j = 1; j < size - 1; j++)
     {
         int water_trpped_j = min(left[j], right[j]) - arr[j];
         total_water_trapped += water_trpped_j;
@@ -93,10 +89,9 @@ int maxWaterOptimised(int arr[], int size)
     return total_water_trapped;
 }
 
-
 int main(void)
 {
-    int arr[] = {0,1,0,2,1,0,1,3,2,1,2,1};
+    int arr[] = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
     // int arr[] = {2, 0, 2};
     int size = sizeof(arr) / sizeof(arr[0]);
 

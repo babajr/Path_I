@@ -4,7 +4,7 @@ explicit keyword?  => Explicit Keyword in C++ is used to mark constructors to no
 design pattern--> singletone class, virtual class
 can inline as a static? --> Yes
 can inline as a const? --> Yes
-can static function as const?  --> Yes
+can static function as const?  --> (Yes) No
 can constructor be a virtual? --> No, when constructor execute that time vtable is not present
 can virtual function as a const? --> Yes
 pointer vs reference?

@@ -4,14 +4,12 @@ File name: queue_using_list.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Queue implementation using Linked List.
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 struct Node
 {
@@ -24,7 +22,6 @@ typedef struct Node Node;
 Node *front = NULL;
 Node *rear = NULL;
 
-
 /*
 API to enqueue element in the queue.
 */
@@ -36,12 +33,12 @@ void enqueue(int val)
     newNode->next = NULL;
 
     // check if Q is full i.e. malloc() will return NULL once heap memory is not free.
-    if(newNode == NULL)
+    if (newNode == NULL)
         printf("Q is FULL\n");
     else
     {
         // if list is empty.
-        if(front == NULL)
+        if (front == NULL)
         {
             front = newNode; // this will act as head.
             rear = newNode;
@@ -54,7 +51,6 @@ void enqueue(int val)
     }
 }
 
-
 /*
 API to dequeue element from the queue.
 */
@@ -63,7 +59,7 @@ int dequeue()
     int x = -1; // return -1 if queue is empty
     Node *temp = NULL;
 
-    if(front == NULL)
+    if (front == NULL)
     {
         printf("Q is EMPTY\n");
     }
@@ -78,7 +74,6 @@ int dequeue()
     return x;
 }
 
-
 /*
 API to display element of the queue.
 */
@@ -86,7 +81,7 @@ void display()
 {
     Node *temp = front;
 
-    while(temp != NULL)
+    while (temp != NULL)
     {
         printf("%d\t", temp->data);
         temp = temp->next;
@@ -94,7 +89,6 @@ void display()
 
     printf("\n");
 }
-
 
 int main(void)
 {

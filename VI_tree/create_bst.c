@@ -4,7 +4,6 @@ File name: create_bst.c
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Binary Search Tree (BST).
 File contains the implementation of BST.
@@ -24,7 +23,6 @@ typedef struct BstNode Node;
 // create global root pointer
 Node *root = NULL;
 
-
 /*
 API to create new node.
 */
@@ -40,7 +38,6 @@ Node *getNewNode(int value)
     return newNode;
 }
 
-
 /*
 API to insert the nodes in order to create the BST.
 Recursive Insert function is used.
@@ -50,11 +47,11 @@ is already present, it will not be added.
 Node *insert(Node *ptr, int value)
 {
     // If BST is empty, create the new node and insert it as root node.
-    if(ptr == NULL)
+    if (ptr == NULL)
         ptr = getNewNode(value);
     // If nodes are present in the tree, then check for appropriate position to
     // enter the node.
-    else if(value < ptr->data) // If duplicate is allowed else if(value <= ptr->data)
+    else if (value < ptr->data) // If duplicate is allowed else if(value <= ptr->data)
     {
         ptr->left = insert(ptr->left, value);
     }
@@ -65,7 +62,6 @@ Node *insert(Node *ptr, int value)
 
     return ptr;
 }
-
 
 /*
 Iterative Method of inserting element in the array.
@@ -79,7 +75,7 @@ void insertIterative(Node *ptr, int value)
     Node *newNode;
 
     // If tree is empty.
-    if(ptr == NULL)
+    if (ptr == NULL)
     {
         // Create new node and point root to that node.
         ptr = getNewNode(value);
@@ -88,16 +84,16 @@ void insertIterative(Node *ptr, int value)
     }
 
     // Firstly search if node with value is already present.
-    while(ptr != NULL)
+    while (ptr != NULL)
     {
         tail = ptr;
 
-        if(value == ptr->data)
+        if (value == ptr->data)
         {
             printf("Element is already present, will not insert\n");
             return;
         }
-        else if(value < ptr->data)
+        else if (value < ptr->data)
             ptr = ptr->left;
         else
             ptr = ptr->right;
@@ -106,12 +102,11 @@ void insertIterative(Node *ptr, int value)
     // Node with value is not present, we can create new node and insert it.
     newNode = getNewNode(value);
 
-    if(newNode->data < tail->data)
+    if (newNode->data < tail->data)
         tail->left = newNode;
     else
         tail->right = newNode;
 }
-
 
 /*
 API to display the tree in INORDER fashion.
@@ -119,7 +114,7 @@ API to display the tree in INORDER fashion.
 void printInorder(Node *ptr)
 {
     // Tree is empty.
-    if(ptr == NULL)
+    if (ptr == NULL)
         return;
 
     printInorder(ptr->left);
@@ -127,14 +122,13 @@ void printInorder(Node *ptr)
     printInorder(ptr->right);
 }
 
-
 /*
 API to display the tree in PREORDER fashion.
 */
 void printPreorder(Node *ptr)
 {
     // Tree is empty.
-    if(ptr == NULL)
+    if (ptr == NULL)
         return;
 
     printf("%d -> ", ptr->data);
@@ -142,21 +136,19 @@ void printPreorder(Node *ptr)
     printPreorder(ptr->right);
 }
 
-
 /*
 API to display the tree in POSTORDER fashion.
 */
 void printPostorder(Node *ptr)
 {
     // Tree is empty.
-    if(ptr == NULL)
+    if (ptr == NULL)
         return;
 
     printPostorder(ptr->left);
     printPostorder(ptr->right);
     printf("%d -> ", ptr->data);
 }
-
 
 int main(void)
 {

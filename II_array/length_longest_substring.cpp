@@ -4,7 +4,6 @@ File name: length_longest_substring.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Length of the longest substring without repeating characters.
 Given a string str, find the length of the longest substring without repeating characters.
@@ -16,9 +15,8 @@ Output: 6 (longest substring are “BDEFGA” and “DEFGAB”)
 
 #include <stdio.h>
 #include <string.h>
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 /*
 Brute Force Approach. TC = O(n3)
@@ -38,10 +36,10 @@ bool check_unique_char(char str[], int start, int end)
 {
     int hash_arr[256] = {0}; // hash array to store informaton if char in str is visited or not.
 
-    for(int i = start; i <= end; i++)
+    for (int i = start; i <= end; i++)
     {
-        if(hash_arr[str[i]] == 1) // No distinct characters
-            return 0; // False. substring contains no unique characters.
+        if (hash_arr[str[i]] == 1) // No distinct characters
+            return 0;              // False. substring contains no unique characters.
 
         hash_arr[str[i]] = 1; // True
     }
@@ -49,26 +47,24 @@ bool check_unique_char(char str[], int start, int end)
     return 1; // substtring contains unique characters.
 }
 
-
 int longest_substring_unique_chars(char str[], int len)
 {
     int longest_len = 0;
 
     // generate all possible substrings
-    for(int i = 0; i < len; i++)
+    for (int i = 0; i < len; i++)
     {
-        for(int j = i; j < len; j++)
+        for (int j = i; j < len; j++)
         {
             // for substring (i to j) check whether it contains all
             // unique characters.
-            if(check_unique_char(str, i, j) == 1)
+            if (check_unique_char(str, i, j) == 1)
                 longest_len = max(longest_len, j - i + 1);
         }
     }
 
     return longest_len;
 }
-
 
 /*
 Approach 2: Using Sliding Window. TC = O(n2)
@@ -81,14 +77,14 @@ int longest_substring_unique_chars_eff(char str[], int len)
     int longest_len = 0;
 
     // generate all possible substrings
-    for(int start = 0; start < len; start++)
+    for (int start = 0; start < len; start++)
     {
         int hash_arr[256] = {0}; // hash array to store informaton if char in str is visited or not.
 
-        for(int end = start; end < len; end++)
+        for (int end = start; end < len; end++)
         {
             // if current char is already visited, come out of the loop
-            if(hash_arr[str[end]] == 1)
+            if (hash_arr[str[end]] == 1)
             {
                 break;
             }
@@ -104,7 +100,6 @@ int longest_substring_unique_chars_eff(char str[], int len)
 
     return longest_len;
 }
-
 
 int main(void)
 {

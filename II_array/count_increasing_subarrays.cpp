@@ -29,7 +29,7 @@ void printArray(int arr[], int size)
     cout<<"\n";
 }
 
-/* Approach 1: Brute Force.
+/* Approach 1: Brute Force. Solution is wrong, please ignore this approach.
 TC = O(n3)
 */
 /*
@@ -84,8 +84,8 @@ int countIncSubarray(int arr[], int size)
 
    TC = O(n2)
  */
-/*
-int countIncSubarray(int arr[], int size)
+
+int countIncSubarray_1(int arr[], int size)
 {
     int count = 0;
 
@@ -106,7 +106,7 @@ int countIncSubarray(int arr[], int size)
 
     return count;
 }
-*/
+
 
 /* Approach 3: Optimal Solution.
    input arr: 1    5   7   8   2   3
@@ -149,7 +149,7 @@ int main()
     cout<<"Original Array: \n";
     printArray(arr, size);
 
-    count = countIncSubarray(arr, size);
+    count = countIncSubarray_1(arr, size);
 
     cout<<"Count of increasing subarrays: "<<count;
 

@@ -33,7 +33,10 @@ int main(void)
 
     //checking bit
     res2 = n & (1 << pos);
-    printf("Checking bit:%d\n", res2); //False
+    if(res2 > 0)
+        printf("bit at position %d is set\n", pos);
+    else
+        printf("bit at position %d is not set\n", pos);
 
     //toggling bit
     res3 = n ^ (1 << pos);

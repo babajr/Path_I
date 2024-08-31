@@ -125,6 +125,25 @@ int remove_duplicates_simple(int arr[], int size)
 
 }
 
+/* Using Hash array.
+   This logic will work for both sorted as well unsorted arrays.
+*/
+int remove_duplicates_hash(int arr[], int size)
+{
+    int new_index = 0;
+    int hash[100] = {0}; // Array size = MAX_ELE + 1
+
+    for(int i = 0; i < size; i++)
+    {
+        if(hash[arr[i]] == 0) // The element is unique, update the array
+        {
+            hash[arr[i]] = 1;
+            arr[new_index++] = arr[i];
+        }
+    }
+
+    return new_index;
+}
 
 int main(void)
 {
@@ -135,6 +154,7 @@ int main(void)
     // printf("Array new length: %d\n", remove_duplicates_bf(arr, size));
     printf("Array new length: %d\n", remove_duplicates(arr, size));
     printf("Array new length: %d\n", remove_duplicates_simple(arr, size));
+    printf("Array new length: %d\n", remove_duplicates_hash(arr, size));
 
     return 0;
 }

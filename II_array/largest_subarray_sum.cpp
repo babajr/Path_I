@@ -104,7 +104,7 @@ int largestSubarrSumKadane(int arr[], int size)
 int main(void)
 {
     // int arr[] = {-2, -1, -3, -4, 0};
-    int arr[] = {1,2,3,-4,5};
+    int arr[] = {1,2,-10,4,1};
     int size = sizeof(arr) / sizeof(arr[0]);
 
     int largest_sum = largestSubarrSum(arr, size);

@@ -3,27 +3,28 @@ using namespace std;
 #include "memory"
 class singletone
 {
-    static singletone* instance;
+    static singletone *instance;
     singletone()
     {
-        cout<<"i am in default constructor"<<endl;
+        cout << "i am in default constructor" << endl;
     }
-    public:
-     
-    static singletone* getInstance()
+
+public:
+    static singletone *getInstance()
     {
-        if(instance == NULL)
+        if (instance == NULL)
         {
             instance = new singletone;
-        }else
+        }
+        else
         {
-            cout<<" memory is already defined \n";
+            cout << " memory is already defined \n";
         }
         return instance;
     }
 };
 
-singletone* singletone::instance = NULL;
+singletone *singletone::instance = NULL;
 int main()
 {
     auto obj = singletone::getInstance();

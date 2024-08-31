@@ -1,0 +1,740 @@
+0. OOPs Concepts:
+=================
+Encapsulation:
+-------------
+- Encapsulation in C++ is defined as the wrapping up of data and information in a single unit. 
+  In Object Oriented Programming, Encapsulation is defined as binding together the data and the functions 
+  that manipulate them.
+- Two Important property of Encapsulation:
+  - Data Protection:
+    - Encapsulation protects the internal state of an object by keeping its data members private. 
+      Access to and modification of these data members is restricted to the class’s public methods, 
+      ensuring controlled and secure data manipulation.
+  - Information Hiding:
+    - Encapsulation hides the internal implementation details of a class from external code. 
+      Only the public interface of the class is accessible, providing abstraction and simplifying 
+      the usage of the class while allowing the internal implementation to be modified without 
+      impacting external code.
+
+
+Abstraction:
+-------------
+- Abstraction means displaying only essential information and hiding the details. 
+  Data abstraction refers to providing only essential information about the data to the outside world, 
+  hiding the background details or implementation.
+- Abstraction using Classes: 
+  - We can implement Abstraction in C++ using classes. 
+    The class helps us to group data members and member functions using available access specifiers. 
+    A Class can decide which data member will be visible to the outside world and which is not.
+- Abstraction in Header files: 
+  - One more type of abstraction in C++ can be header files. 
+    For example, consider the pow() method present in math.h header file. 
+    Whenever we need to calculate the power of a number, we simply call the function pow() present 
+    in the math.h header file and pass the numbers as arguments without knowing the underlying 
+    algorithm according to which the function is actually calculating the power of numbers.
+
+Inheritance:
+-------------
+- The capability of a class to derive properties and characteristics from another class is called Inheritance.
+- Inheritance supports the concept of “reusability”, i.e. when we want to create a new class and there is
+  already a class that includes some of the code that we want, we can derive our new class from the existing class. 
+  By doing this, we are reusing the fields and methods of the existing class.
+
+Polymorphism
+-------------
+- The word polymorphism means having many forms. In simple words, we can define polymorphism as the 
+  ability of a message to be displayed in more than one form.
+- An operation may exhibit different behaviors in different instances. 
+  The behavior depends upon the types of data used in the operation.
+- C++ supports operator overloading and function overloading.
+- Operator Overloading: 
+  - The process of making an operator exhibit different behaviors in different 
+    instances is known as operator overloading.
+  - C++ has the ability to provide the operators with a special meaning for a data type, 
+    this ability is known as operator overloading.
+- Function Overloading: 
+  - Function overloading is using a single function name to perform different types of tasks. 
+  - When there are multiple functions with the same name but different parameters, then the functions 
+    are said to be overloaded, hence this is known as Function Overloading.
+  - Functions can be overloaded by changing the number of arguments or/and changing the type of arguments.
+
+- Types of Polymorphism:
+  - Compile-time Polymorphism:
+    - This type of polymorphism is achieved by function overloading or operator overloading.
+
+  - Runtime Polymorphism
+    - This type of polymorphism is achieved by Function Overriding. 
+      Late binding and dynamic polymorphism are other names for runtime polymorphism.
+    - The function call is resolved at runtime in runtime polymorphism. In contrast, with compile time polymorphism, 
+      the compiler determines which function call to bind to the object after deducing it at runtime.
+    - Function Overriding:
+      - Function Overriding occurs when a derived class has a definition for one of the member functions of the base class. 
+        That base function is said to be overridden.
+    - Virtual Function:
+      - A virtual function is a member function that is declared in the base class using the keyword virtual and 
+        is re-defined (Overridden) in the derived class.
+      - Virtual functions are Dynamic in nature. 
+      - They are defined by inserting the keyword “virtual” inside a base class and are always declared 
+        with a base class and overridden in a child class
+      - A virtual function is called during Runtime
+
+1. Visibility and Encapsulation:
+================================
+-- public: a declaration that is accessible to all
+-- protected: a declaration that is accessible only to the class itself and 
+   its subclasses.
+-- private: a declaration that is accessible only to the class itself
+-- friend: a declaration that is accessible only to friend’s of a class.
+   friend’s tend to break data hiding and should be used judiciously.
+
+2. Namespaces:
+==============
+-- A namespace is a declarative region that provides a scope to the identifiers 
+   (the names of types, functions, variables, etc) inside it.
+-- It is used to organize code into logical groups and to prevent name collisions 
+   that can occur especially when your code base includes multiple libraries.
+-- namespace provides a class-like modularization without class-like semantics.
+
+3. Inheritance:
+===============
+Member Functions:
+-- Derived class inherits all member functions of Base class.
+-- Derived class may override a member function of Base class by 
+   redefining it with the same signature.
+-- Derived class may overload a member function of Base class by redefining it 
+   with the same name; but different signature.
+-- Derived class may add new member functions.
+
+Access Specification:
+-- Derived class cannot access private members of Base class
+-- Derived class can access public members of Base class
+
+Protected Access Specification:
+-- Derived class can access protected members of Base class
+-- No other class or global function can access protected members of Base class
+-- A protected member in Base class is like public in Derived class
+-- A protected member in Base class is like private in other classes or global functions
+
+Static Member Functions:
+-- Derived class does not inherit the static member functions of Base class.
+
+Friend Functions:
+-- Derived class does not inherit the friend functions of Base class.
+
+Constructor-Destructor:
+-- Derived class inherits the Constructors and Destructor of Base class (but in a different semantics)
+-- Derived class cannot override or overload a Constructor or the Destructor of Base class.
+-- First construct base class object, then derived class object
+-- First destruct derived class object, then base class object
+
+4. Static and Dynmaic Binding:
+==============================
+Type of an Object:
+-- The static type of the object is the type declared for the object while writing the code. Compiler sees static type.
+-- The dynamic type of the object is determined by the type of the object to which it currently refers. 
+   Compiler does not see dynamic type.
+-- Example,
+
+class A {}; // A is a Base Class
+
+class B : public A {}; // B is a Derived Class
+
+int main() {
+    A *p;
+    p = new B; // Static type of p = A*
+               // Dynamic type of p = B*
+}
+
+Static Binding (Early Binding):
+--------------------------------
+-- When a function invocation binds to the function definition based on the static type of objects.
+-- This is done at compile-time.
+-- Normal function calls, overloaded function calls (Method Overloading), and overloaded operators are examples of 
+   static binding.
+-- Advantage: Efficiency
+-- Fast Execution
+-- Actual object is not used for binding.
+-- Example:
+
+******************************************************
+#include<iostream> 
+using namespace std; 
+
+class B // Base Class
+{ 
+public:
+   void f() { } 
+};
+
+class D : public B // Derived Class
+{ 
+public: 
+   void f() { } // f() is overriden
+};
+
+int main() 
+{
+   B b; 
+   D d;
+   B *p;
+   p = &b; p->f(); // B::f()
+   p = &d; p->f(); // B::f()
+}
+
+p->f() always binds to B::f()
+Binding is decided by the type of pointer instead of type of object
+******************************************************
+
+Dynamic binding (Late Binding):
+--------------------------------
+-- When a function invocation binds to the function definition based on the dynamic type of objects.
+-- This is done at run-time.
+-- Function pointers, Virtual functions, Method Overriding are examples of late binding.
+-- Advantage: Flexibility
+-- Slow Execution
+-- Actual object is used for binding.
+-- Example:
+
+******************************************************
+include<iostream> 
+using namespace std; 
+
+class B 
+{
+public:
+   virtual void f() { } 
+};
+
+class D : public B 
+{ 
+public:
+   virtual void f() { }
+};
+
+int main() 
+{
+   B b; 
+   D d;
+   B *p;
+   p = &b; p->f(); // B::f() 
+   p = &d; p->f(); // D::f()
+}
+
+p->f() binds to B::f() for a B object, and to D::f() for a D object.
+Binding is decided by the type of object
+Dynamic Binding is possible for Pointer and Reference Data Types only.
+******************************************************
+
+
+4. Polymorphic Type: Virtual Functions:
+=======================================
+-- A virtual function is a member function that is declared in the base class using the keyword virtual and 
+   is re-defined (Overridden) in the derived class. 
+-- It tells the compiler to perform late binding where the compiler matches the object with the right called function
+   and executes it during the runtime. This technique falls under Runtime Polymorphism.
+-- Dynamic binding is possible only for pointer and reference data types and for member 
+   functions that are declared as virtual in the base class --> These are called Virtual Functions
+-- If a member function is declared as virtual, it can be overridden in the derived class.
+-- If a member function is not virtual and it is re-defined in the derived class then the 
+   latter definition hides the former one
+-- In C++, a static member function of a class cannot be virtual
+   -- Virtual functions are invoked when you have a pointer or reference to an instance of a class. 
+   -- Static functions aren’t tied to the instance of a class but they are tied to the class
+   -- Also, static member function cannot be const and volatile.
+-- Any class containing a virtual member function – by definition or by inheritance – is called a Polymorphic Type.
+-- A hierarchy may be polymorphic or non-polymorphic.
+-- A non-polymorphic hierarchy has little value.
+
+
+-- Pure Virtual Functions:
+   -----------------------
+   -- A Pure Virtual Function has a signature but no body!
+   -- Example,
+   virtual void display() = 0; // pure virtual function
+
+
+-- Virtual Destructor:
+   --------------------
+   -- Slicing is where we assign an object of a derived class to an instance of a base class, 
+      thereby losing part of the information - some of it is sliced away.
+   -- If the destructor is not virtual in a polymorphic hierarchy, it leads to Slicing.
+   -- Destructor must be declared Virtual in the base class.
+   -- Example:
+
+*********************************************
+   #include <iostream> 
+   using namespace std;
+   
+   class Base 
+   {
+   protected: 
+      int i; 
+   public:
+      Base (int a) : i = a {}
+
+      virtual void display() 
+      { 
+         cout « "I am Base class object, i = " « i « endl; 
+      }
+   ｝；
+
+   class Derived : public Base 
+   { 
+      int j; 
+   public:
+         Derived (int a, int b) : Base(a) 
+         { 
+            j = b; 
+         }
+         virtual void display() 
+         { 
+            cout<< "I am Derived class object, i = " « i « ", j= " « j <endl; 
+         }
+   ｝；
+
+   // Global method, Base class object is passed by value
+   void somefunc (Base obj) 
+   { 
+      obj.display()); 
+   }
+   
+   int main() 
+   { 
+      Base b(33); 
+      Derived d(45, 54);
+      somefunc(b);
+      somefunc(d); // Object Slicing, the member j of d is sliced off
+   }
+
+Outputs:  
+   I am Base class object, i = 33
+   I am Base class object, i = 45
+*********************************************
+
+5. Abstract Base Class:
+================================
+-- A class containing at least one Pure Virtual Function is called an Abstract Base Class
+-- Pure Virtual Functions may be inherited or defined in the class
+-- No instance can be created for an Abstract Base Class
+-- Naturally it does not have a constructor or the destructor
+   But An abstract class can have constructors. 
+-- An Abstract Base Class, however, may have other virtual (non-pure) and non-virtual member 
+   functions as well as data members
+-- We can have pointers and references of abstract class type.
+-- Data members in an Abstract Base Class should be protected. 
+   Of course, private and public data are also allowed
+-- Member functions in an Abstract Base Class should be public. 
+   Of course, private and protected methods are also allowed
+-- A Concrete Class must override and implement all Pure Virtual Functions so that it can be instantiated
+-- If we do not override the pure virtual function in the derived class, then the derived class 
+   also becomes an abstract class.
+
+6. Virtual Function Pointer Table:
+==================================
+-- In C++, every class is a separate type.
+-- Every class can have a Virtual Function Table (VFT) with its appropriate processing function pointer put there.
+-- Whenever a class defines a virtual function a hidden member variable is added to the class which points 
+   to an array of pointers to (virtual) functions called the Virtual Function Table (VFT).
+-- VFT pointers are used at run-time to invoke the appropriate function implementations, because at compile 
+   time it may not yet be known if the base function is to be called or a derived one implemented 
+   by a class that inherits from the base class.
+-- VFT is class-specific – all instances of the class has the same VFT
+-- VFT carries the Run-Time Type Information (RTTI) of objects
+-- For example, refer "Module 31: Programming in C++ (Virtual Function Table)"
+-- The C++ language uses Vtable and Vptr to manage virtual functions.
+-- Virtual Table (vTable):
+   -----------------------
+   - The vTable, or Virtual Table, is a table of function pointers that is created by the compiler to support 
+     dynamic polymorphism. 
+     Whenever a class contains a virtual function, the compiler creates a Vtable for that class. 
+     Each object of the class is then provided with a hidden pointer to this table, known as Vptr.
+   - The Vtable has one entry for each virtual function accessible by the class.
+     These entries are pointers to the most derived function that the current object should call.
+
+-- Virtual Pointer (vPtr):
+   -----------------------
+   - The virtual pointer or _vptr is a hidden pointer that is added by the compiler as a member of the class 
+     to point to the VTable of that class. 
+     For every object of a class containing virtual functions, a vptr is added to point to the vTable of that class. 
+     It’s important to note that vptr is created only if a class has or inherits a virtual function.
+
+7. Type Casting & Cast Operators:
+==================================
+-- Casting in C:
+   -------------
+   -- Casts are used to convert the type of an object, expression, function argument, or return value to that of another type.
+   -- (Silent) Implicit conversions:
+      -- The standard C++ conversions and user-defined conversions
+   -- Explicit conversions:
+      -- Type is needed for an expression that cannot be obtained through an implicit conversion more than one 
+         standard conversion creates an ambiguous situation.
+      -- Example (C-Style Casting)
+      *********************************************
+      int i = 3; 
+      double d = 2.5;
+      double *p = &d;
+
+      d = i; // Implicit
+      i = d; // implicit -- // warning C4244: ’=’ : conversion from ’double’ to ’int’,
+            // possible loss of data
+      i = (int)d; // explicit
+      *********************************************
+
+   -- To perform a type cast, the compiler,
+      -- Allocates temporary storage
+      -- Initializes temporary with value being cast
+      -- Example,
+
+      *********************************************
+      double f (int i,int j) 
+      { 
+         return (double) i / j; 
+      }
+
+      // compiler generates:
+      double f (int i, int j) 
+      {
+            double temp_i = i, temp_j = j; // Conversion in temporary
+            return temp_i / temp_j;
+      }
+      *********************************************
+
+-- Casting in C++:
+------------------
+   -- Performs fresh inference of types without change of value
+   -- Performs fresh inference of types with change of value
+   -- Preserves type information in all contexts
+   -- Provides clear semantics through cast operators:
+      -- const cast
+      -- static cast
+      -- reinterpret cast
+      -- dynamic cast
+
+   -- Cast Operators:
+      --------------
+      -- A cast operator take an expression of source type (implicit from the 
+         expression) and convert it to an expression of target type 
+         (explicit in the operator) following the semantics of the operator.
+      -- Use of cast operators increases robustness by generating errors in static 
+         or dynamic time.
+
+      -- const cast operator: const_cast<type>(expr)
+         --------------------
+         -- Explicitly overrides const and/or volatile in a cast
+         -- Usually does not perform computation or change value
+         -- const cast converts between types with different cv-qualification
+         -- Only const cast may be used to cast away (remove) const-ness or volatility
+
+      -- static cast operator: static_cast<type>(expr)
+         ---------------------
+         -- Performs a non-polymorphic cast
+         -- Usually performs computation to change value – implicit or user-defined
+         -- static cast performs all conversions allowed implicitly (not only those
+            with pointers to classes), and also the opposite of these.
+         -- It can convert from void* to any pointer type
+         -- It can convert integers, floating-point values and enum types 
+         -- It can convert enum types to another enum types
+         -- static cast can perform conversions between pointers to related classes:
+            -- Not only up-casts, but also down-casts
+            -- No checks are performed during run-time to guarantee that the object being 
+               converted is in fact a full object of the destination type
+      
+      -- reinterpret cast operator: reinterpret_cast<type>(expr)
+         -------------------------
+         -- Casts between unrelated pointer types or pointer and integer
+         -- Does not perform computation yet reinterprets value
+         -- Converts any pointer type to any other pointer type, even of unrelated classes
+         -- The operation result is a simple binary copy of the value from one pointer to the other
+         -- All pointer conversions are allowed: neither the content pointed nor 
+            the pointer type itself is checked
+         -- It can also cast pointers to or from integer types
+         -- The format in which this integer value represents a pointer is platform-specific
+         -- The only guarantee is that a pointer cast to an integer type large enough to fully contain it 
+            (such as intptr t), is guaranteed to be able to be cast back to a valid pointer
+
+
+      -- dynamic cast operator: dynamic_cast<type>(expr)
+         ---------------------
+         -- Performs a run-time cast that verifies the validity of the cast
+         -- Performs pre-defined computation, sets null or throws exception
+         -- dynamic cast can only be used with pointers and references to classes (or with void*)
+         -- Its purpose is to ensure that the result of the type conversion points to a 
+            valid complete object of the destination pointer type
+         -- This naturally includes pointer upcast (converting from pointer-to-derived to pointer-to-base), 
+            in the same way as allowed as an implicit conversion --> Use static cast instead of dynamic casr
+         -- But dynamic cast can also downcast (convert from pointer-to-base to pointer-to-derived) 
+            polymorphic classes (those with virtual members) if-and-only-if the pointed object is a 
+            valid complete object of the target type 
+         -- If the pointed object is not a valid complete object of the target type, dynamic cast returns a null pointer
+         -- If dynamic cast is used to convert to a reference type and the conversion is not possible, 
+            an exception of type bad cast is thrown instead
+         -- dynamic cast can also perform the other implicit casts allowed on pointers: casting null pointers 
+            between pointers types (even between unrelated classes), and casting any pointer of any type to a 
+            void* pointer
+
+   -- typeid Operator:
+      ----------------
+      -- typeid operator is used where the dynamic type of a polymorphic object must be known 
+         and for static type identification
+      -- typeid operator can be applied on a type or an expression
+      -- typeid operator returns const std::type info. The major members are:
+         -- operator==, operator!=: checks whether the objects refer to the same type
+         -- name: implementation-defined name of the type
+      -- typeid operator works for polymorphic type only (as it uses RTTI (Run-Time Type Information) – virtual function table)
+      -- If the polymorphic object is bad, the typeid throws bad typeid exception
+
+
+7. Exceptions Handling:
+==================================
+-- Exception Handling is a mechanism that separates the detection and handling of circumstantial 
+   Exceptional Flow from Normal Flow
+-- Current state saved in a pre-defined location
+-- Execution switched to a pre-defined handler
+-- Exceptions are C++’s means of separating error reporting from error handling
+
+-- Types of Exceptions:
+   -------------------
+   -- Asynchronous Exceptions:
+      -- Exceptions that come Unexpectedly. Example - an Interrupt in a Program
+      -- Takes control away from the Executing Thread context to a context that is 
+         different from that which caused the exception
+      
+   -- Synchronous Exceptions:
+      -- Planned Exceptions
+      -- Handled in an organized manner
+      -- The most common type of Synchronous Exception is implemented as a throw
+
+-- Exception Stages:
+   -- Error Incidence:
+      -- Synchronous (S/W) Logical Error OR Asynchronous (H/W) Interrupt (S/W Interrupt)
+   
+   -- Create Object & Raise Exception:
+      -- An Exception Object can be of any Complete Type
+      -- An int to a full blown C++ class object
+
+   -- Detect Exception:
+      -- Polling Software Tests
+      -- Notification Control (Stack) Adjustments
+   
+   -- Handle Exception:
+      -- Ignore: hope someone else handles it, that is, Do Not Catch
+      -- Act: but allow others to handle it afterwards, that is, Catch, Handle and Re-Throw
+      -- Own: take complete ownership, that is, Catch and Handle
+
+   -- Recover from Exception:
+      -- Continue Execution: If handled inside the program
+      -- Abort Execution: If handled outside the program
+
+   -- Example:
+
+   int f() {
+    int error;
+    /* ... */
+    if (error) /* Stage 1: error occurred */
+        return -1; /* Stage 2: generate exception object */
+    /* ... */
+   }
+int main(void) {
+    if (f() != 0) /* Stage 3: detect exception */
+    {
+        /* Stage 4: handle exception */
+    }
+    /* Stage 5: recover */
+   }
+
+-- Error Handling in C:
+   -------------------
+   -- C does not provide any specific feature for error handling.
+   -- But with some standard practices C provides support for exceptions.
+   
+   -- Language Features
+      -- Return Value & Parameters 
+      -- Local goto
+   -- Standard Library support
+      -- Global Variables <errno.h>
+      -- Abnormal Termination <stdlib.h>
+      -- Conditional Termination <assert.h>
+      -- Non-Local goto <setjmp.h>
+      -- Signals <signal.h>
+
+-- Error Handling in C++:
+   ----------------------
+   -- Try Block:
+      -- try block : Consolidate areas that might throw exceptions
+      -- function try block : Area for detection is the entire function body
+      -- Nested try block : Semantically equivalent to nested function calls
+      -- Example:
+      1. Function try
+      void f()
+      try 
+      {
+         throw E();
+      }
+      catch(E& e)
+      {
+
+      }
+
+      2. Nested try
+      try 
+      {
+         try 
+         { 
+            throw E(); 
+         }
+      }
+      catch (E& e) 
+      { 
+         
+      }
+
+   -- catch block:
+      -- Name for the Exception Handler
+      -- Catching an Exception is like invoking a function
+      -- Immediately follows the try block
+      -- Unique Formal Parameter for each Handler
+      -- Can be simply a Type Name to distinguish its Handler from others
+
+   -- catch block:
+      -- Expression is treated the same way as a function argument in a call 
+         or the operand of a return statement
+      -- The expression Generate an Exception object to throw
+         i.e. throw Exception();
+      -- Or, Copies an existing Exception object to throw
+         i.e. 
+         Exception ex;
+         throw ex; // Exception(ex);
+
+8. C++ Storage Classes: (Syntax: storage_class var_data_type var_name)
+========================
+- A Storage Class defines 
+  - Visibility (accessibility of the variable or function from the different modules of the program), 
+  - Lifetime (time till which the variable or function remains active), and 
+  - Scope of a variable or function. 
+
+- It helps in tracking the variable during the runtime of the program.
+- The storage class of a variable provides information about the initial default value, scope of the variable, 
+  lifetime, and memory location of the variable. 
+- Every variable in c++ has two properties: DataType and Storage Class. 
+  - DataType stores the type of data stored in the variable, and 
+  - Storage class stores two properties - Lifetime and Scope.
+
+- Five different types of storage classes: Auto, Register, Static, Extern, Mutable 
+  - auto: (auto datatype var_name1 = value;)
+    ----
+    - default storage class for the variables declared inside any function block.
+    - Scope
+      - The scope of this keyword is within the block, in which it is declared. 
+      - If we want to access an auto variable outside the declared block, then we need to use pointers for the same. 
+      - We need to point to the memory locations in which the auto variable is located.
+    - Lifetime 
+      - The lifetime of an auto variable is the same as that of the function or block in which it is declared. 
+      - Once a function or block is destroyed, the auto variable is also destroyed. 
+
+  - register: (register data_type var_name1 = value;)
+    --------
+   - The register storage class stores the register variables. 
+   - It is almost the same as the auto storage class, but in this, the compiler stores the data in a vacant register 
+     (if present) in the microprocessor of the computer. 
+   - If a free register is not present, then we store the data in the memory locations.
+   - The operations performed on the register class variables are fast because they are stored in the registers.
+   - Scope 
+     - The Scope of the keyword is local to the block. Its address can’t be accessed by using pointers.
+   - Lifetime 
+     - Its lifetime is the same as that of the function or block in which it is declared. 
+     - Once the function is destroyed, the register variable is also destroyed. 
+
+  - static: static data_type var_name1 = value
+    -------
+   - It is used to declare static variables (which retain their last value even when they are not in scope). 
+   - These variables are initialized only once and terminate only on the termination of the complete program, 
+     not a particular block of code. 
+   - The memory is allocated only once to the variable and by default, the compiler assigns it the value 0.
+   - Scope 
+     - The scope of the static variables is within the block, in which it is declared. 
+     - However, they can be accessed outside their scope as well using the concept of pointers given here by 
+       pointing to the very exact memory location where the variables reside. 
+   - Lifetime - 
+     - These variables terminate only on the termination of the complete program, not a particular block of code.
+
+  - extern: (extern data_type var_name1;)
+    ------
+    - If we need to share the same variable inside two same files, then we can use extern storage class.
+    - Extern variables have global scope and are accessible outside the file in which it is declared. 
+    - It is visible to all programs. 
+    - Initially, By default, these variables are assigned the value 0.
+    - Scope 
+      - The scope of extern variables is between global multiple files. 
+      - It is used if two or more files are sharing the same variable or function. 
+    - Lifetime - The extern variables exist as long as the function (in which it is declared) is not terminated. 
+
+  - mutable:
+    -------
+    - The mutable storage class specifier is only used on a class data member to make it 
+      editable even if the member is part of a const object.
+    - The mutable specifier cannot be used with names that are static or const, or with reference members.
+    - Scope 
+      - The scope of the mutable variables is within the block, in which it is declared. 
+    - Lifetime 
+      - The mutable variables exist as long as the class (in which it is declared) is not terminated. 
+
+9. Smart Pointers:
+==================
+- Smart pointers stores pointers to dynamically allocated objects.
+- They are c++ objects.
+
+Circular/Cyclic Reference:
+-------------------------
+- Object A holds a smart pointer to an object B. Object B holds a smart pointer to A. Forms a cyclic reference.
+- Example, Typical for a Tree: Child & Parent pointers
+- Cyclic references go undetected.
+  - Both the two objects remain allocated forever
+  - Resource Leak occurs
+Cyclic Reference Solution:
+- Use Smart pointer (std:: shared_ptr) from Parent to Child: Data Structure Pointers
+- Use Weak pointer (std: :weak-ptr) from Child to Parent: Algorithm Pointers
+- Maintain two flavors of RC Smart Pointers
+  - Strong pointers that really link up the data structure (Child / Sibling Links). 
+    They behave like regular RC. std: :shared_ptr --> These are Ownership pointers
+  - Weak pointer for cross / back references in the data structure (Parent / Reverse Sibling Links). 
+    std: :weak.ptr --> These are Observer pointers
+- Keep two reference counts:
+  - One for strong pointers, and
+  - One for weak pointers
+- While dereferencing a weak pointer, check the strong reference count:
+  - If it is zero, return NULL. As if, the object is gone
+
+unique_ptr:
+----------
+- It retains sole ownership of an object through a pointer and destroys that object 
+  when the unique ptr goes out of scope.
+- No two unique-ptr instances can manage the same object
+- The object is destroyed and its memory deallocated when:
+  - The managing unique-ptr object is destroyed, or
+  - The managing unique-ptr object is assigned another pointer via operator= or reset() 
+- The ownership can also be relinquished by release () which returns the raw pointer of the managed object
+- Typical uses of std:: unique-ptr include:
+  - exception safety to classes and functions that handle objects with dynamic lifetime, by guaranteeing deletion
+  - ownership of uniquely-owned objects with dynamic lifetime into functions
+  - ownership of uniquely-owned objects with dynamic lifetime from functions
+  - element type in move-aware containers, such as std::vector.
+
+shared_ptr:
+----------
+- It retains shared ownership of an object through a pointer. Several shared_ptr objects may own the same object
+- Object is destroyed and its memory deallocated when either of the following happens:
+  - the last remaining shared-ptr owning the object is destroyed
+  - the last remaining shared ptr owning the object is assigned another pointer via operator= or reset
+- We can get the number of managed objects by invoking use_count()
+- A shared ptr can share ownership of an object while storing a pointer to another object
+
+weak_ptr:
+----------
+- It holds a non-owning (weak) reference to an object that is managed by std:: shared ptr
+- It must be converted to std:: shared ptr in order to access the referenced object
+- std:: weak-ptr models temporary ownership: when an object needs to be accessed only if it exists, 
+  and it may be deleted at any time by someone else
+- It is used to track the object, and it is converted to std: : shared-ptr to assume temporary ownership
+- It is used to break circular references of std:: shared ptr. It cannot be used to access the managed object
+
+

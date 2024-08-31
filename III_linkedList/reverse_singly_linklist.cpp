@@ -7,9 +7,9 @@ struct Node
 };
 Node *head = NULL;
 
-void insert(Node * temp, int data)
+void insert(Node *temp, int data)
 {
-    while(temp->next != NULL)
+    while (temp->next != NULL)
     {
         temp = temp->next;
     }
@@ -19,21 +19,20 @@ void insert(Node * temp, int data)
     temp->next = NULL;
 }
 
-
 void display(Node *temp)
 {
-    while(temp!=NULL)
+    while (temp != NULL)
     {
-        cout<<"data : "<<temp->data<<endl;
-        temp= temp->next;
+        cout << "data : " << temp->data << endl;
+        temp = temp->next;
     }
-    cout<<"--------------------------------------\n";
+    cout << "--------------------------------------\n";
 }
-Node *reverseTheList(Node* temp)
+Node *reverseTheList(Node *temp)
 {
-    Node *prev=NULL, *curr= temp, *next = NULL;
+    Node *prev = NULL, *curr = temp, *next = NULL;
 
-    while(curr->next != NULL)
+    while (curr->next != NULL)
     {
         next = curr->next;
         curr->next = prev;

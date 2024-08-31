@@ -70,7 +70,7 @@ i
         i
 --> 2, 3, 4, 5 are correct indices. checked this by incrementing i by one.
 */
-int cyclic_sort(int arr[], int size)
+void cyclic_sort(int arr[], int size)
 {
     int index = 0;
 
