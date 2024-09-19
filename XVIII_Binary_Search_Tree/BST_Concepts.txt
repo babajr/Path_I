@@ -1,0 +1,57 @@
+=====================
+1. BINARY SEARCH TREE:
+=====================
+- For every node, all the elements on its left are smaller and
+  all the elements on its right are larger.
+
+                30
+        15              50
+    10      20      40      60
+
+- It is useful for searching.
+- It will not have duplicates.
+- Inorder traversal of BST will give you elements in sorted order.
+- Number of nodes for BST are (Catalan Number): (2nCn) / (n+1)
+  i.e. 
+
+=================
+2. DRAWBACKS:
+=================
+The drawback of BST is that its hieght can not be controlled.
+TC varies from log(n) to n, depending on the order of insertion
+
+Case 1:
++++++++
+Given Keys:
+40  20  30  60  50  10  70
+
+                    40 
+            20              60
+        10      30      50      70
+
+height = 2
+
+
+Case 2:
++++++++
+Given Keys:
+10  20  30  40  50  60  70
+
+    10 
+        20 
+            30
+                40
+                    50
+                        60 
+                            70
+
+height = 6
+
+TC depends on the order of insertion which we can not control.
+Min TC(BST) = O(log n)
+Max TC(BST) = O(n)
+
+
+Solution to above Problem:
+++++++++++++++++++++++++++++
+Height balanced binary search trees --> AVL Tree

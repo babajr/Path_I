@@ -114,13 +114,44 @@ int my_atoi(const char *str)
     return res * sign;
 }
 
+int my_atoi_bit_man(char *p)
+{
+    int k = 0;
+    int sign = 1;
+    while (*p)
+    {
+        if (*p == ' ' || *p == '0')
+        {
+            p++;
+        }
+
+        if (*p == '-')
+        {
+            sign = -1;
+            p++;
+        }
+
+        if (*p > '9' || *p < '0')
+        {
+            return -1;
+        }
+
+        k = (k << 3) + (k << 1) + (*p) - '0';
+        p++;
+    }
+
+    return (k * sign);
+}
+
 int main(void)
 {
-    char str[20] = "12a34";
+    // char str[20] = "12a34";
+    char str[20] = "-12";
 
-    printf("%d\n", my_atoi_1(str));
+    // printf("%d\n", my_atoi_1(str));
     printf("%d\n", my_atoi(str));
     printf("%d\n", atoi(str));
+    printf("%d\n", my_atoi_bit_man(str));
 
     return 0;
 }

@@ -4,7 +4,6 @@ File name: cyclic_sort_implementation.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Cyclic Sort Algorithm.
 
@@ -12,9 +11,8 @@ Note: Applicable only when elements in the array are in range (0, N) or
 (1, N).
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
-
 
 /*
 Helper API to swap the elements of an array.
@@ -26,24 +24,22 @@ void swap(int arr[], int first, int second)
     arr[second] = temp;
 }
 
-
 /*
 API to display the contents of the array.
 */
 void print_array(int arr[], int size)
 {
-    for(int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
         printf("%d\t", arr[i]);
 
     printf("\n");
 }
 
-
 /*
 API to implement the cyclic sort algorithm.
 TC = O(n)
 
-Idea is to check if element is present at correct index, if not the
+Idea is to check if element is present at correct index, if not then
 swap element with element at correct index.
 
 For range (0, N) ==> correct_index = index of current element.
@@ -70,17 +66,17 @@ i
         i
 --> 2, 3, 4, 5 are correct indices. checked this by incrementing i by one.
 */
-void cyclic_sort(int arr[], int size)
+void cyclic_sort_1_to_n(int arr[], int size)
 {
     int index = 0;
 
-    while(index < size)
+    while (index < size)
     {
         // get the correct index of current element.
         int correct = arr[index] - 1;
 
         // check if arr[i] (current element) is present at correct index.
-        if(arr[index] != arr[correct])
+        if (arr[index] != arr[correct])
         {
             // current element is not present at correct index,
             // swap it with the element at correct index.
@@ -92,15 +88,47 @@ void cyclic_sort(int arr[], int size)
     }
 }
 
+/*
+API to implement the cyclic sort algorithm when range is (0, N).
+TC = O(n)
+*/
+void cyclic_sort_0_to_n(int arr[], int size)
+{
+    int index = 0;
+
+    while (index < size)
+    {
+        // get the correct index of current element.
+        int correct = arr[index];
+
+        // check if arr[i] (current element) is present at correct index.
+        if (arr[index] != arr[correct])
+        {
+            // current element is not present at correct index,
+            // swap it with the element at correct index.
+            swap(arr, index, correct);
+        }
+        else // if current element is present at correct index
+             // just check for next element.
+            index++;
+    }
+}
 
 int main(void)
 {
-    int arr[] = {3,2,1,2,4};
+    int arr[] = {3, 5, 1, 2, 2};
     int size = sizeof(arr) / sizeof(arr[0]);
 
     print_array(arr, size);
-    cyclic_sort(arr, size);
+    cyclic_sort_1_to_n(arr, size);
     print_array(arr, size);
+
+    int arr_1[] = {3, 2, 0, 1, 4};
+    int size_1 = sizeof(arr) / sizeof(arr[0]);
+
+    print_array(arr_1, size_1);
+    cyclic_sort_0_to_n(arr_1, size_1);
+    print_array(arr_1, size_1);
 
     return 0;
 }

@@ -182,18 +182,25 @@ Node *delete(Node *ptr, int key)
 
 int main(void)
 {
-    root = insert(root, 30); // create the root node.
-    root = insert(root, 20);
-    root = insert(root, 40);
+    // root = insert(root, 30); // create the root node.
+    // root = insert(root, 20);
+    // root = insert(root, 40);
+    // root = insert(root, 50);
+    // root = insert(root, 10);
+    // root = insert(root, 25);
+    // root = insert(root, 35);
     root = insert(root, 50);
     root = insert(root, 10);
-    root = insert(root, 25);
-    root = insert(root, 35);
+    root = insert(root, 40);
+    root = insert(root, 20);
+    root = insert(root, 30);
 
     printInorder(root);
     printf("\n");
 
-    int key = 30;
+    printf("Height: %d\n", height(root));
+
+    int key = 50;
     delete (root, key);
 
     printInorder(root);

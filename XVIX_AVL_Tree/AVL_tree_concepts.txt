@@ -1,0 +1,16 @@
+===========
+AVL Tree:
+===========
+- It is called as a Height Balanced BST.
+- Balance Factor =
+  (Height of Left Subtree - Heigt of Right Subtree)
+- Valid Balance Factors = {-1, 0, 1}
+- i.e. abs(Balance Factor) = <= 1
+  if (abs(Balance Factor) <= 1)
+    Tree is Balanced
+  else
+    Tree is Not Balanced
+
+
+--- Please refer:
+/Users/santoshjadhav/Desktop/Coding/Data_Structures_Abdul_Bari/Data-Structure-using-C-Notes/AVL Trees.pdf

@@ -1,0 +1,92 @@
+==========================================================================
+LUXSOFT
+==========================================================================
+1. Storage Classes and Process's Virtual Memory Map in detail.
+2. structure padding and structure packing.
+   How to save memory when creating structure without using #prgama pack?
+   Can we have static variable in structure and the reasoning behing the answer?
+3. Networking Questions:
+   - ARP in detail
+   - ISIS vs OSPF
+   - TCP vs UDP
+4. Previous Company Stack Overview --> Components, Architecture.
+   Detailed discussion of features done.
+5. Multithreading theoretical questions:
+   - thread vs process and difference between there virtual memory map
+   - mutex vs semaphore vs conditional variable
+6. Code to reverse string in place.
+   Constraints: Don't use any inbuilt function like sizeof(), strlen().
+7. Code to reverse singly linkedlist.
+
+
+==========================================================================
+ARISTA
+==========================================================================
+1. === 
+Output of below program
+
+char *str = "12345";
+printf("%d", str);
+printf("%d", *str);
+printf("%c", str);
+printf("%c", *str);
+printf("%s", str);
+printf("%s", *str);
+
+2. === 
+Leetcode 203. Remove Linked List Elements
+Sorting and grouping of list of numbers and then grouping specific elements of the 
+numbers with edge case conditions to handle 0 and single digit/multi digit numbers.
+
+3.===
+1. Char * pointer = "12345" // where is it stored? 
+2. Printf(%s, pointer) // Output? 
+3. Printf(%s, *pointer) //Output? Why segmentation fault? 
+4. Printf(%d, pointer) /Output? 
+5. Printf(%d, *pointer) //Output? 
+6. Printf(%c, *pointer) // Output? 
+7. Pointer[0] = 0 //is it allowed? Cannot modify why? 
+
+DSA problem:
+In an array that contains consecutive numbers find the (one) missing number. 
+The count will be given. 
+Example, array = 1,2,3,4,6,7,8,9 : count = 8. 
+Ans = 5. Hint - find in O(logn). Binary search
+
+4.
+=== 
+DSA round: Find the missing number (Binary Search). Height of a tree.
+Leetcode two sum problem
+Find missing number from the given array
+
+5.
+=== 
+Write methods for BST: to find min node of the tree, to find the next largest node.
+
+6.
+===
+Locate a off-by-1 error in a C++ ctor, explain its consequence.
+Given a bunch of risky printf("%s", xxxxx); predict the output and explain.
+Design and code up a generic stack library.
+Design an elevator controller. (If you confront this one, you'll be rejected with high probability).
+The system design problem is ticket master.
+
+7.
+===
+comparing 2 specific strings
+to find first missing number in sorted array
+Binary Search in a rotated array. 
+Binary Tree insert and delete.
+Simplify the directory path 
+Multiplication of 2 very large numbers 
+trees traverse and flatten questions
+
+8.
+===
+LinkedList question on deleting certain nodes. The other was on binary operations.
+He gave two functions and asked about what each function was doing and which one would be faster 
+(they were both counting number of 1s in a number but in different ways).
+Implement Sieve of Eratosthenes.
+
+
+==========================================================================

@@ -4,7 +4,6 @@ File name: smallest_subarray_with_given_sum.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Given an array of positive numbers and a positive number ‘S’,
 find the length of the smallest contiguous subarray whose sum is greater than or equal to ‘S’.
@@ -15,9 +14,45 @@ Output: 2
 Explanation: The smallest subarray with a sum great than or equal to '7' is [5, 2].
 */
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
+// Returns length of smallest subarray with sum greater than or equal to S.
+// If there is no subarray with given sum, then returns 0
+int find_min_subarr_with_given_sum_bf(int arr[], int size, int S)
+{
+    //  Initialize length of smallest subarray as 0
+    int min_len = INT_MAX;
+
+    // Pick every element as starting point
+    for (int start = 0; start < size; start++)
+    {
+        // Initialize sum starting with current start
+        int curr_sum = arr[start];
+
+        // If first element itself is greater
+        if (curr_sum >= S)
+            return 1;
+
+        // Try different ending points for current start
+        for (int end = start + 1; end < size; end++)
+        {
+            // add last element to current sum
+            curr_sum += arr[end];
+
+            // If sum becomes more than x and length of
+            // this subarray is smaller than current smallest
+            // length, update the smallest length (or result)
+            if (curr_sum >= S && (end - start + 1) < min_len)
+                min_len = (end - start + 1);
+        }
+    }
+
+    if (min_len == INT_MAX)
+        return 0;
+    else
+        return min_len;
+}
 
 /*
 Efficient Approach: SLIDING WINDOW. (Variable Size Sliding Window)
@@ -38,38 +73,38 @@ int find_min_subarr_with_given_sum(int arr[], int size, int S)
     int min_len = INT_MAX;
     int window_sum = 0; // to hold each subarray sum.
 
-    for(int window_end = 0; window_end < size; window_end++)
+    for (int window_end = 0; window_end < size; window_end++)
     {
         // get the window sum by adding elements until window_sum >= S.
         window_sum += arr[window_end];
 
         // shrink the window as small as possible until the window_sum < S.
-        while(window_sum >= S)
+        while (window_sum >= S)
         {
             // get the min_len.
             min_len = min(min_len, window_end - window_start + 1);
-            //remove element going out
+            // remove element going out
             window_sum -= arr[window_start];
             // shrink the window
             window_start++;
         }
     }
 
-    if(min_len == INT_MAX)
+    if (min_len == INT_MAX)
         return 0;
     else
         return min_len;
 }
 
-
 int main(int argc, char *argv[])
 {
-    // int arr[] = {2, 1, 5, 2, 3, 2};
-    int arr[] = {};
-    int S = 7;
+    int arr[] = {2, 1, 5, 2, 3, 2};
+    // int arr[] = {};
+    int S = 20;
     int size = sizeof(arr) / sizeof(arr[0]);
 
     printf("Minimum Subarray length for given Sum: %d\n", find_min_subarr_with_given_sum(arr, size, S));
+    printf("Minimum Subarray length for given Sum: %d\n", find_min_subarr_with_given_sum_bf(arr, size, S));
 
     return 0;
 }

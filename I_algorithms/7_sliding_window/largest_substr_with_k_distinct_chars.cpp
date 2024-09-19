@@ -4,7 +4,6 @@ File name: largest_substr_with_k_distinct_chars.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Given a string, find the length of the longest substring in it
 with no more than K distinct characters.
@@ -14,9 +13,9 @@ Output: 4
 Explanation: The longest substring with no more than '2' distinct characters is "araa".
 */
 
-#include<bits/stdc++.h>
+#include <iostream>
+#include <map>
 using namespace std;
-
 
 /*
 Efficient Approach: SLIDING WINDOW.
@@ -75,7 +74,6 @@ int find_largest_substr_with_k_unique_char1(const string &str, int k)
     return max_length;
 }
 
-
 /*
 SLIDING WINDOW. Instead of hashmap we will use array.
 */
@@ -87,17 +85,17 @@ int find_largest_substr_with_k_unique_char(const string &str, int k)
 
     int hash[128] = {0};
 
-    while(window_end < str.size())
+    while (window_end < str.size())
     {
-        if(hash[str[window_end]] == 0)
+        if (hash[str[window_end]] == 0)
             counter++;
 
         hash[str[window_end]]++;
         window_end++;
 
-        while(counter > k)
+        while (counter > k)
         {
-            if(hash[str[window_start]] == 1)
+            if (hash[str[window_start]] == 1)
                 counter--;
 
             hash[str[window_start]]--;
@@ -110,17 +108,17 @@ int find_largest_substr_with_k_unique_char(const string &str, int k)
     return max_len;
 }
 
-
 int main(int argc, char *argv[])
 {
     cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("araaci", 2) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("araaci", 2) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("araaci", 1) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("araaci", 1) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("cbbebi", 3) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("cbbebi", 3) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("abcdffaa", 2) << endl;
-    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("abcdffaa", 2) << endl;
+    cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("aaaaracai", 3) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("araaci", 2) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("araaci", 1) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("araaci", 1) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("cbbebi", 3) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("cbbebi", 3) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char("abcdffaa", 2) << endl;
+    // cout << "Length of the longest substring: " << find_largest_substr_with_k_unique_char1("abcdffaa", 2) << endl;
 
     return 0;
 }

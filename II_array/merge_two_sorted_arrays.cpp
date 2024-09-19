@@ -4,7 +4,6 @@ File name: merge_two_sorted_arrays.cpp
 Author: babajr
 *****************************************************************************/
 
-
 /*
 Efficiently merging two sorted arrays.
 Input: ar1[] = {10};
@@ -25,12 +24,11 @@ Output: ar1[] = {1, 2, 3, 5, 8, 9}
 
 using namespace std;
 
-
 void printArray(int arr[], int size)
 {
-    for(int i = 0; i < size; ++i)
-        cout<<arr[i]<<" ";
-    cout<<"\n";
+    for (int i = 0; i < size; ++i)
+        cout << arr[i] << " ";
+    cout << "\n";
 }
 
 /* Approach 1: With extra space. Brute Force.
@@ -88,10 +86,10 @@ SC: O(1)
 void mergeArray(int arr1[], int arr2[], int sizeArr1, int sizeArr2)
 {
     // Traverse arr1
-    for(int i = 0; i < sizeArr1; ++i)
+    for (int i = 0; i < sizeArr1; ++i)
     {
         // Check if element at arr1[i] is greater than element at arr2[0].
-        if(arr1[i] > arr2[0])
+        if (arr1[i] > arr2[0])
         {
             // swap the elements
             int temp = arr1[i];
@@ -104,7 +102,7 @@ void mergeArray(int arr1[], int arr2[], int sizeArr1, int sizeArr2)
 
             // We will store the first_ele of arr2 and left shift all the element and store
             // the first_ele in arr2[k-1]
-            for(k = 1; k < sizeArr2 && arr2[k] < first_ele; ++k)
+            for (k = 1; k < sizeArr2 && arr2[k] < first_ele; ++k)
             {
                 // if(arr2[k] < first_ele)
                 arr2[k - 1] = arr2[k];
@@ -114,8 +112,57 @@ void mergeArray(int arr1[], int arr2[], int sizeArr1, int sizeArr2)
     }
 }
 
+/*
+Apporach 3: Without using any extra space
 
-/*Approach 3: GAP method. OPTIMUM SOLUTION.
+Intuition:
+If we merge the given array, one thing we can assure is that arr1[] will contain all the
+smaller elements and arr2[] will contain all the bigger elements.
+This is the logic we will use. Using the 2 pointers, we will swap the bigger elements of
+arr1[] with the smaller elements of arr2[] until the minimum of arr2[] becomes greater or
+equal to the maximum of arr1[].
+
+-- We will declare two pointers i.e. left and right.
+   The left pointer will point to the last index of the arr1[]
+   (i.e. Basically the maximum element of the array).
+   The right pointer will point to the first index of the arr2[]
+   (i.e. Basically the minimum element of the array).
+-- Now, the left pointer will move toward index 0 and the right pointer will move
+   towards the index m-1.
+   While moving the two pointers we will face 2 different cases like the following:
+   -- If arr1[left] > arr2[right]: In this case, we will swap the elements and move the pointers
+      to the next positions.
+   -- If arr1[left] <= arr2[right]: In this case, we will stop moving the pointers as arr1[] and arr2[]
+      are containing correct elements.
+-- Thus, after step 2, arr1[] will contain all smaller elements and arr2[] will contain
+   all bigger elements.
+   Finally, we will sort the two arrays.
+*/
+void mergeArray_optimal(int arr1[], int arr2[], int sizeArr1, int sizeArr2)
+{
+    int left = sizeArr1 - 1;
+    int right = 0;
+
+    // Swap the elements until arr1[left] is smaller than arr2[right]:
+    while (left >= 0 && right < sizeArr2)
+    {
+        if (arr1[left] > arr2[right])
+        {
+            swap(arr1[left], arr2[right]);
+            left--, right++;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    // Sort arr1[] and arr2[] individually:
+    sort(arr1, arr1 + sizeArr1);
+    sort(arr2, arr2 + sizeArr2);
+}
+
+/*Approach 4: GAP method. OPTIMUM SOLUTION.
 IDEA:
 We start comparing elements that are far from each other rather than adjacent.
 For every pass, we calculate the gap and compare the elements towards the right of the gap.
@@ -151,10 +198,7 @@ Output : 3 9 10 27 38 43 82
 // void mergeArray(int arr1[], int arr2[], int sizeArr1, int sizeArr2)
 // {
 
-
-
 // }
-
 
 int main()
 {
@@ -164,15 +208,19 @@ int main()
     int sizeArr1 = sizeof(arr1) / sizeof(arr1[0]);
     int sizeArr2 = sizeof(arr2) / sizeof(arr2[0]);
 
-    cout<<"original arrays"<<endl;
+    cout << "original arrays" << endl;
     printArray(arr1, sizeArr1);
     printArray(arr2, sizeArr2);
 
-    mergeArray(arr1, arr2, sizeArr1, sizeArr2);
-    cout<<"Sorted arrays"<<endl;
+    // mergeArray(arr1, arr2, sizeArr1, sizeArr2);
+    // cout << "Sorted arrays" << endl;
+    // printArray(arr1, sizeArr1);
+    // printArray(arr2, sizeArr2);
+
+    mergeArray_optimal(arr1, arr2, sizeArr1, sizeArr2);
+    cout << "Sorted arrays" << endl;
     printArray(arr1, sizeArr1);
     printArray(arr2, sizeArr2);
-
 
     return 0;
 }

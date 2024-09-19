@@ -28,6 +28,7 @@ void display(Node *temp)
     }
     cout << "--------------------------------------\n";
 }
+
 Node *reverseTheList(Node *temp)
 {
     Node *prev = NULL, *curr = temp, *next = NULL;
